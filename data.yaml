@@ -1,0 +1,16 @@
+path: ./datasets  # 数据集所在路径
+train: train.txt  # 数据集路径下的train.txt
+val: val.txt  # 数据集路径下的val.txt
+test: test.txt  # 数据集路径下的test.txt
+
+# Classes
+names:
+  0: banana
+  1: watermelon
+  2: apple
+  3: cake
+  4: milk
+  5: coke
+  6: tomato
+  7: potato
+  8: chilli
