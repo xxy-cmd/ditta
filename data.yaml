@@ -1,7 +1,7 @@
-path: ./datasets  # 数据集所在路径
-train: train.txt  # 数据集路径下的train.txt
-val: val.txt  # 数据集路径下的val.txt
-test: test.txt  # 数据集路径下的test.txt
+path: ./datasets # 数据集所在路径
+train: train.txt # 数据集路径下的train.txt
+val: val.txt # 数据集路径下的val.txt
+test: test.txt # 数据集路径下的test.txt
 
 # Classes
 names:
