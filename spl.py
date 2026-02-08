@@ -1,7 +1,7 @@
 # 将图片和标注数据按比例切分为 训练集和测试集
-import shutil
-import random
 import os
+import random
+import shutil
 
 # 原始路径
 image_original_path = "data/images/"
@@ -31,11 +31,11 @@ val_percent = 0.1
 test_percent = 0.1
 
 # 支持的图片格式（可根据实际情况添加，如jpg/jpeg/bmp等）
-SUPPORTED_IMG_FORMATS = ('.png', '.jpg', '.jpeg', '.bmp', '.gif')
+SUPPORTED_IMG_FORMATS = (".png", ".jpg", ".jpeg", ".bmp", ".gif")
 
 
 def del_file(path):
-    """删除目录下所有文件"""
+    """删除目录下所有文件."""
     if not os.path.exists(path):
         return
     for i in os.listdir(path):
@@ -45,9 +45,8 @@ def del_file(path):
 
 
 def mkdir():
-    """创建目录（若存在则清空）"""
-    dirs = [train_image_path, train_label_path, val_image_path, val_label_path,
-            test_image_path, test_label_path]
+    """创建目录（若存在则清空）."""
+    dirs = [train_image_path, train_label_path, val_image_path, val_label_path, test_image_path, test_label_path]
     for dir_path in dirs:
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
@@ -56,7 +55,7 @@ def mkdir():
 
 
 def clearfile():
-    """删除原有txt列表文件"""
+    """删除原有txt列表文件."""
     files = [list_train, list_val, list_test]
     for file in files:
         if os.path.exists(file):
@@ -64,9 +63,7 @@ def clearfile():
 
 
 def get_valid_samples():
-    """
-    获取有效样本：以图片为基准，匹配对应的标注文件
-    返回：有效样本名称列表（不含后缀）
+    """获取有效样本：以图片为基准，匹配对应的标注文件 返回：有效样本名称列表（不含后缀）.
     """
     valid_samples = []
     # 遍历图片目录，只处理支持的图片格式
@@ -101,17 +98,17 @@ def main():
     # 计算各集数量
     train_num = int(total_num * train_percent)
     val_num = int(total_num * val_percent)
-    test_num = total_num - train_num - val_num
+    total_num - train_num - val_num
 
     # 划分样本
     train_samples = valid_samples[:train_num]
-    val_samples = valid_samples[train_num:train_num + val_num]
-    test_samples = valid_samples[train_num + val_num:]
+    val_samples = valid_samples[train_num : train_num + val_num]
+    test_samples = valid_samples[train_num + val_num :]
 
     print(f"训练集数目：{len(train_samples)}, 验证集数目：{len(val_samples)}, 测试集数目：{len(test_samples)}")
 
     # 打开txt文件准备写入
-    with open(list_train, 'w') as f_train, open(list_val, 'w') as f_val, open(list_test, 'w') as f_test:
+    with open(list_train, "w") as f_train, open(list_val, "w") as f_val, open(list_test, "w") as f_test:
         # 处理训练集
         for sample in train_samples:
             # 拼接源文件路径
@@ -134,7 +131,7 @@ def main():
             shutil.copyfile(src_label, dst_train_label)
 
             # 写入txt列表
-            f_train.write(dst_train_img + '\n')
+            f_train.write(dst_train_img + "\n")
 
         # 处理验证集
         for sample in val_samples:
@@ -152,7 +149,7 @@ def main():
 
             shutil.copyfile(src_img, dst_val_img)
             shutil.copyfile(src_label, dst_val_label)
-            f_val.write(dst_val_img + '\n')
+            f_val.write(dst_val_img + "\n")
 
         # 处理测试集
         for sample in test_samples:
@@ -170,7 +167,7 @@ def main():
 
             shutil.copyfile(src_img, dst_test_img)
             shutil.copyfile(src_label, dst_test_label)
-            f_test.write(dst_test_img + '\n')
+            f_test.write(dst_test_img + "\n")
 
     print("数据集划分完成！")
 
